@@ -1,3 +1,4 @@
+import "./App.css";
 import Button from './components/Button'
 import Input from './components/Input'
 import { useState, useRef } from 'react'
@@ -9,7 +10,8 @@ function App() {
   const API_URL = import.meta.env.VITE_API_URL;
   const inputElementRef = useRef<HTMLInputElement | null>(null);
   const [file, setFile] = useState<File | null>(null);
-  const [analyzeContent, setAnalyzedContent] = useState("");
+  const [analyzedContent, setAnalyzedContent] = useState("");
+  const [resumeContent, setResumeContent] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -28,10 +30,12 @@ function App() {
     // if the same file is re-selected after analyze is clicked
     event.target.value = "";
     setAnalyzedContent("");
+    setResumeContent("");
     setError("");
     // setShowInput(false)
   }
   const handleAnalyzeClick = async () => {
+    setError("");
     if(!file){
       console.log("analyze button clicked but no file found.")
       return ;
@@ -56,7 +60,8 @@ function App() {
       const data = await response.json();
       console.log("Analysis response:", data);
       // alert(data.message); // temporary for testing
-      setAnalyzedContent(data.message)
+      setAnalyzedContent(data.message);
+      setResumeContent(data.message);
       setFile(null);
     }catch(error){
       console.error("Error while uploading file:", error);
@@ -73,11 +78,44 @@ function App() {
   }
   const handleClearAnalysis = () => {
     setAnalyzedContent("");
+    setResumeContent("");
+    setError("");
   }
   return (
     <div>
-      <h1>AI Resume Analyzer</h1>
-      <Button label="Upload Resume" onClick={handleUploadClick} />
+        <div className="header-section">
+          <h1 className="main-title">AI Resume Analyzer</h1>
+          <p className="sub-title"> Upload your resume to get instant AI-powered feedback using this resume analyzer for free !!</p>
+        </div>
+        <div className="upload-section">
+          <h2 className="upload-title">Ready Set Go !</h2>
+          <div className="upload-actions">
+            <Input 
+              ref={inputElementRef}
+              type="file"
+              content_type="application/pdf"
+              onChange={handleOnChange}
+            />
+            <Button label="Upload Resume" onClick={handleUploadClick}/>
+            <Button label={loading?"Analyzing....":"Analyze"} onClick={handleAnalyzeClick} disabled={file?false:true}/>
+            <Button label="Clear Analysis" onClick={handleClearAnalysis} disabled={analyzedContent?false:true}/>
+          </div>
+        </div>
+        <div className="result-section">
+          <div className="result-card">
+            <h2 className="result-title">"Resume Preview"</h2>
+            <div className="result-content">
+              {resumeContent || "Resume Text will appear here..."}
+            </div>
+          </div>
+          <div className="result-card">
+            <h2 className="result-title">"AI Analysis"</h2>
+            <div className="result-content">
+              {analyzedContent || "AI suggestions will appear here..."}
+            </div>
+          </div>
+        </div>
+      
       {/* not using this method, using useRef instead
       {showInput && (
         <Input 
@@ -86,16 +124,6 @@ function App() {
           onChange={handleOnChange}
         />
       )} */}
-      <Input 
-        ref={inputElementRef}
-        type="file"
-        content_type="application/pdf"
-        onChange={handleOnChange}
-      />
-      {file && (<Button label={loading?"Analyzing....":"Analyze"} onClick={handleAnalyzeClick}/>)}
-      {analyzeContent && <p>{analyzeContent}</p>}
-      {analyzeContent && <Button label="Clear Analysis" onClick={handleClearAnalysis}/>}
-      {error && <p>"Received Error:{ error}"</p>}
     </div>
   )
 }

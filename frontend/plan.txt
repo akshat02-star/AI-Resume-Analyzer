@@ -1,3 +1,6 @@
 * add css
     * use flex-box etc.
 * using nginx reverse proxy
+1. Layout
+2. Upload Section
+3. Two-column Results Section
