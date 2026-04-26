@@ -13,7 +13,7 @@ app = FastAPI(title="AI Resume Analyzer")
 
 origins = [
     "http://localhost:5173", # for local development
-    "https://ai-resume-analyzer-j7v0uywly-akshat02-stars-projects.vercel.app/" # Vercel hosted frontend app
+    "https://ai-resume-analyzer-j7v0uywly-akshat02-stars-projects.vercel.app" # Vercel hosted frontend app
 ]
 
 app.add_middleware(
