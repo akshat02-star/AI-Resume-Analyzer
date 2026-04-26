@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.sqlite3
+*.db
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Environment variables
+.env
+.env.local
+
+# Logs
+*.log
+
+# macOS
+.DS_Store
+
+# Node modules
+node_modules/
+
+# Vite build output
+dist/
+
+# Vercel
+.vercel/
+
+# IDE files
+.vscode/
+.idea/
+
+# Testing / cache
+.pytest_cache/
+.coverage
+.mypy_cache/
+
+# Uploads (if any)
+uploads/

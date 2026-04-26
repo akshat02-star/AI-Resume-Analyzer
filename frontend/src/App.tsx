@@ -6,6 +6,7 @@ function App() {
   // const [showInput, setShowInput] = useState(false)
   // using useRef for holding the input DOM element
   // const [response, setResponse] = useState<Response | null>(null)
+  const API_URL = import.meta.env.VITE_API_URL;
   const inputElementRef = useRef<HTMLInputElement | null>(null);
   const [file, setFile] = useState<File | null>(null);
   const [analyzeContent, setAnalyzedContent] = useState("");
@@ -40,14 +41,16 @@ function App() {
     formData.append("file", file);
     try{
       setLoading(true);
-      const response = await fetch("/api/v1/analyze", {
+      const response = await fetch(`${API_URL}/api/v1/analyze`, {
         method: "POST",
         body: formData
       });
       if (!response.ok) {
+        let errorMsg = "Request Failed"
         const errorData = await response.json();
-        console.error("Backend error:", errorData.detail);
-        setError(errorData.detail);
+        errorMsg = errorData.detail || errorMsg;
+        console.error("Backend error:", errorMsg);
+        setError(errorMsg);
         return;
       }
       const data = await response.json();
