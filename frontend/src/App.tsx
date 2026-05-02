@@ -114,10 +114,11 @@ function App() {
               {analyzedContent || "AI suggestions will appear here..."}
             </div>
           </div>
-          <div>
-            <p>Error while analyzing: {error}</p>
-          </div>
         </div>
+        {error && <div>
+          <p>Error while analyzing: {error}</p>
+        </div>}
+
       
       {/* not using this method, using useRef instead
       {showInput && (

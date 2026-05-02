@@ -5,6 +5,12 @@
 2. Upload Section
 3. Two-column Results Section
 
+1. authentication (login + signup)
+2. db integration
+3. user dashboard
+4. admin panel
+5. payment gateway
+
 * user registration and login system
 * SEO
 * DNS
@@ -12,3 +18,4 @@
 * payment gateway integration
 * admin panel
 * booking system with data storage
+
