@@ -4,3 +4,11 @@
 1. Layout
 2. Upload Section
 3. Two-column Results Section
+
+* user registration and login system
+* SEO
+* DNS
+* mobile responsive
+* payment gateway integration
+* admin panel
+* booking system with data storage
