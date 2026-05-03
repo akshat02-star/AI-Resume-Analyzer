@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import Button from "../components/Button";
 import Input from "../components/Input";
+import { useNavigate } from "react-router-dom";
 
 
 export const DashboardPage = () => {
@@ -8,6 +9,7 @@ export const DashboardPage = () => {
   // const [showInput, setShowInput] = useState(false)
   // using useRef for holding the input DOM element
   // const [response, setResponse] = useState<Response | null>(null)
+  const navigate = useNavigate();
   const API_URL = import.meta.env.VITE_API_URL;
   const inputElementRef = useRef<HTMLInputElement | null>(null);
   const [file, setFile] = useState<File | null>(null);
@@ -116,6 +118,7 @@ export const DashboardPage = () => {
             </div>
           </div>
         </div>
+        <Button onClick={()=>navigate("/")} label="Back to HomePage" />
         {error && <div>
           <p>Error while analyzing: {error}</p>
         </div>}

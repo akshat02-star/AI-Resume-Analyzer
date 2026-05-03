@@ -5,6 +5,7 @@ import { DashboardPage } from "./pages/DashboardPage";
 import RegisterPage from "./pages/RegisterPage";
 import { LoginPage } from "./pages/LoginPage";
 import { HomePage } from "./pages/HomePage";
+import ProtectedRoute from "./pages/ProtectedRoute";
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/dashboard" element={<ProtectedRoute child={<DashboardPage />} />} />
       </Routes>
     </BrowserRouter>
   );

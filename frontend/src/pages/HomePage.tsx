@@ -10,6 +10,7 @@ export const HomePage = () => {
         <div className="upload-actions">
             <Link to="/register">Signup</Link>
             <Link to="/login">Login</Link>
+            <Link to="/dashboard">Dashboard</Link>
         </div>
     </div>
 }

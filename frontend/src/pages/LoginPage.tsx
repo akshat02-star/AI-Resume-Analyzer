@@ -21,7 +21,8 @@ export const LoginPage = () => {
         try{
             const loginResponse = await loginUser({email, password});
             // store the JWT token returned by backend
-
+            localStorage.setItem("access_token", loginResponse.access_token);
+            localStorage.setItem("token_type", loginResponse.token_type);
             setMsg("Login Succeeded");
             // redirect to dashboard
             setTimeout(() => navigate("/dashboard"), 1500)
@@ -39,7 +40,7 @@ export const LoginPage = () => {
                 ]}
                 onSubmit={handleLogin} buttonText="Login" 
             />
-            <Button label="Back to HomePage" onClick={()=> navigate("/register")} />
+            <Button label="Back to HomePage" onClick={()=> navigate("/")} />
             <div>
                 <p>{msg}</p>
             </div>
