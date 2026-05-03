@@ -84,6 +84,11 @@ export const DashboardPage = () => {
     setResumeContent("");
     setError("");
   }
+  const handleLogout = () => {
+    handleClearAnalysis();
+    localStorage.clear();
+    navigate("/login");
+  }
   return (
     <div>
         <div className="header-section">
@@ -118,7 +123,7 @@ export const DashboardPage = () => {
             </div>
           </div>
         </div>
-        <Button onClick={()=>navigate("/")} label="Back to HomePage" />
+        <Button onClick={handleLogout} label="Logout" />
         {error && <div>
           <p>Error while analyzing: {error}</p>
         </div>}
